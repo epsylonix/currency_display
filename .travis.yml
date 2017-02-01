@@ -10,7 +10,7 @@ services:
   - redis-server
   
 before_script:
-  - bin/rails db:migrate RAILS_ENV=test
+  - rails db:migrate RAILS_ENV=test
 
 script:
-  - bin/rails test
+  - rails test
