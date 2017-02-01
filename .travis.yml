@@ -14,7 +14,8 @@ services:
   - redis-server
   
 before_script:
-  - rails db:migrate RAILS_ENV=test
+  - chmod +x bin/rails
+  - bin/rails db:migrate RAILS_ENV=test
 
 script:
-  - rails test
+  - bin/rails test
