@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> <%= yield :title %> </title>
+    <meta charset='UTF-8'>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application' %>
+    <%= yield :editor_css %>
+    <%= yield :index_css %>
+    <%= action_cable_meta_tag %>
+    <%= javascript_include_tag 'application'%>
+    <%= yield :editor_js %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

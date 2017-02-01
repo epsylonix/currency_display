@@ -1,0 +1,49 @@
+<% content_for :title do
+    t('Currency exchange rate')
+end %>
+
+<% content_for :index_css do
+    stylesheet_link_tag 'index'
+end %>
+
+<main>
+  <h1> <%= t('Currency exchange rate') %> </h1>
+  <% cache @currencies do %>
+    <table class='currencies table-hover'> 
+    <thead>
+      <tr>
+        <th><%= t('Code') %></th>
+        <th><%= t('Description') %></th>
+        <th><%= t('CBR exchange rate')%></th>
+        <th></th>
+      </tr>
+    </thead>
+      <tbody>
+        <% @currencies.each do |curr| %>
+          <tr>
+            <% cache curr do %>
+            
+              <td <% if update_failed curr %> class = 'update-failed' <% end %> >
+                <%= curr.code.upcase %>
+              </td>
+
+              <td> <%= t(curr.description) %> </td>
+              
+              <td id = <%= curr.code %> class = 'currency'> 
+                <%= render 'shared/currency', curr: curr %> 
+              </td>
+
+              <td> <%= link_to t('Edit'), edit_currency_path(curr.code) %> </td>
+
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+   
+      <p class = 'update-failed  <% unless @any_update_failed %> hidden <% end %>' id='update-failed-notice'> 
+        <%= t('Exchange rate may be outdated for this currency') %> 
+      </p>
+   
+  <% end %>
+</main>

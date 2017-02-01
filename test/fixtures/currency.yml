@@ -1,0 +1,7 @@
+usd:
+  id: '1'
+  val: '100.15'
+  code: 'usd'
+  forced_val: '5'
+  forced_till: '01.01.2100 00:00:00'
+  forced: '0'

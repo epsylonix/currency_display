@@ -1,0 +1,20 @@
+<% if @curr.errors.any? %>
+  <% @curr.errors.full_messages.each do |msg| %>
+    <div class='alert alert-danger'> 
+      <div class='fixed-width'>
+        <strong><%= t('Error') %>!</strong> 
+        <%= msg %> 
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% if flash.any? %>
+  <% flash.each do |status, msg| %>
+    <div class="alert alert-<%= status %>"> 
+      <div class='fixed-width'>
+        <%= t(msg) %> 
+      </div>
+    </div>
+  <% end %>
+<% end %>

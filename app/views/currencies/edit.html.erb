@@ -1,0 +1,49 @@
+<% content_for :title do
+  t('Edit currency')
+end %>
+
+<% content_for :editor_css do
+  stylesheet_link_tag 'edit'
+end %>
+
+<% content_for :editor_js do
+  javascript_include_tag 'edit'
+end %>
+
+<% content_for :editor_js do
+    javascript_include_tag 'vendor'
+end %>
+
+<%= render 'shared/messages' %>
+
+<h1 class='title'> <%= t('Force currency value') %>  <strong> <%= @curr.code.upcase %> </strong> </h1>
+<%= form_for @curr, url: update_currency_path(@code), 
+                    html: {class: 'currency-form', 
+                           id: 'currency-form'} do |c| %> 
+    <div>
+        <%= c.label :forced_val, t('Forced value') %>
+        <%= c.text_field :forced_val, placeholder: '10,00', class: "text-input", 
+            value: localize_curr(@curr.errors.include?(:forced_val) ? @curr.forced_val_before_type_cast : @curr.forced_val),
+            required: true,
+            'data-parsley-pattern' => FORM_VALIDATORS['currency_js'],
+            'data-parsley-pattern-message' => t('Please enter a number, eg 123,45')
+        %>
+    </div>
+    <div>
+        <%= c.label :forced_till, t('Force untill')%> 
+        <%= c.text_field :forced_till, placeholder: '31.12.2016 10:00', class: "text-input", 
+            value: @curr.errors.include?(:forced_till) ? @curr.forced_till_before_type_cast : @curr.forced_till.strftime('%d.%m.%Y   %H:%M:%S'),
+            required: true,
+            'data-parsley-pattern' => FORM_VALIDATORS['date_js'],
+            'data-parsley-pattern-message' => t('Expected format is: dd/mm/yyyy  hh:mm[:ss]')
+        %>
+    </div>
+    <div>
+        <%= c.check_box :forced, class: 'toggle', id: 'currency_forced' %>
+        <label for='currency_forced' data-on="<%= t('Enabled') %>" data-off="<%= t('Disabled') %>" id='currency_forced_label'></label>
+    </div>
+  <div class="button-group">
+        <%= c.submit t('Save'), class: 'button save-button' %><!--
+     --><%= link_to t('Home'), :currencies, class: 'button return-button'%>
+  </div>
+<% end %> 

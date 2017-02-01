@@ -1,0 +1,296 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+*= require_self
+*/
+
+@import 'variables';
+
+/* ============================================================
+  GENERAL
+============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $admin-bg-color;
+}
+
+.title {
+  width: $admin-width;
+  background: $auxiliary-color;
+  border-radius: 3px 3px 0 0;
+
+  margin: 50px auto 0;
+  color: #dff3ff;
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: normal;
+}
+
+
+/* ============================================================
+  FORM
+============================================================ */
+
+.currency-form {
+  margin: 0 auto;
+  width: $admin-width;
+  padding: 20px;
+  border: 3px solid $auxiliary-color;
+  border-radius: 0 0 3px 3px;
+  /*box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3);*/
+
+  label {
+    display: block;
+    font-size: 18px;
+    color:$font-color-dimmed;
+  }
+
+  input {
+    font-family:inherit;
+  }
+}
+
+.text-input {
+  display: block;
+  width: 100%;
+  height: 60px;
+  margin-top: 2px;
+  font-size: 20px;
+  background: #f8f8f8;
+  border: 1px solid #d8d8d8;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  padding: 10px;
+  transition: box-shadow 0.5s, border 0.5s;
+
+  &:focus {
+    box-shadow: 0 0 4px 4px $auxiliary-color;
+    border-color:  $main-color;
+    background: #FFFFFF;
+  }
+}
+
+.field_with_errors .text-input,
+.text-input.error {
+  border: 2px solid $error-auxiliary-color;
+  background-color: $error-color;
+  &:focus {
+    box-shadow: 0 0 4px 1px $error-auxiliary-color;
+  }
+}
+
+.text-input.success {
+  border: 2px solid $success-auxiliary-color;
+  background-color: $success-color;
+  &:focus {
+    box-shadow: 0 0 4px 1px $success-auxiliary-color;
+  }
+}
+
+
+.parsley-errors-list.filled {
+  list-style: none;
+  text-align: center;
+
+  display: inline-block;
+  position: relative;
+  padding: 5px;
+  margin: -5px 0 20px 0;
+
+  background: white;
+  border-radius: 3px;
+  border: $error-auxiliary-color solid 2px;
+}
+
+.parsley-errors-list.filled:after
+{
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 0 11px 8px;
+  border-color: white transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  top: -8px;
+  left: 43px;
+}
+
+.parsley-errors-list.filled:before
+{
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 0 12px 9px;
+  border-color: $error-auxiliary-color transparent;
+  display: block;
+  width: 0;
+  z-index: 0;
+  top: -11px;
+  left: 42px;
+}
+/* ============================================================
+  BUTTONS
+============================================================ */
+
+.button {
+  display: inline-block;
+  width: 50%;
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  border: 0;
+  color: white;
+  background: #fcfcfc;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  transition: background 0.1s, color 0.1s;
+  padding: 0;
+  user-select: none;
+  text-decoration: none;
+}
+
+.button-group {
+  margin: 20px -20px -20px -20px;
+  padding: 0;
+  word-spacing: 0;
+  white-space: nowrap;
+}
+
+.save-button {
+  /*border-radius: 0 0 0 3px;*/
+  background:  $main-color;
+}
+
+.save-button:active {
+  background: $button-active-color;
+  color: #c3c3c3;
+}
+
+.return-button {
+  /*border-radius: 0 0 3px 0;*/
+  background: $auxiliary-color;
+}
+
+.return-button:active {
+  color: #c3c3c3;
+  background: $button-active-color;
+}
+
+/* ============================================================
+  SWITCH CHECKBOX - ON/OFF
+============================================================ */
+
+.toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+
+  &+label {
+    display: block;
+    position: relative;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+  }
+}
+
+input.toggle+label {
+  padding: 2px;
+  height: 60px;
+  width: 100%;
+
+  &:before,
+  &:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+  }
+
+  &:before {
+    background-color: none;
+    color: #404040;
+    content: attr(data-off);
+    transition: transform 0.5s;
+    backface-visibility: hidden;
+  }
+
+  &:after {
+    content: attr(data-on);
+    transition: transform 0.5s;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    color:  $main-color;
+    border: 1px solid  $main-color;
+  }
+}
+
+input.toggle:checked+label{
+  &:before {
+    transform: rotateY(180deg);
+  }
+
+  &:after {
+    transform: rotateY(0);
+  }
+}
+
+/* ============================================================
+  MESSAGES
+============================================================ */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  .fixed-width {
+    width: $admin-width*3;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+.alert-danger {
+    background-color: $error-color;
+    border-color: $error-auxiliary-color;
+    color: #a94442;
+}
+
+.alert-success {
+  background-color: $success-color;
+  border-color: $success-auxiliary-color;
+  color: #3c763d;
+}
+
+.alert-warning {
+  background-color: $warning-color;
+  border-color: $warning-auxiliary-color;
+  color: #8a6d3b;
+}
+
