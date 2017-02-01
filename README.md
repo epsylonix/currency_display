@@ -1,6 +1,6 @@
 # Currency display
 
-[![Build Status](https://travis-ci.org/epsylonix/currency_display.svg?branch=master)](https://travis-ci.org/epsylonix/currency_display)
+[![Build Status](https://travis-ci.org/epsylonix/currency\_display.svg?branch=master)](https://travis-ci.org/epsylonix/currency\_display)
 
 Home: https://github.com/epsylonix/currency_display
 
@@ -9,7 +9,7 @@ Bugs: https://github.com/epsylonix/currency_display/issues
 #Description
 This is a simple Rails app that does the following:
 
-* displays exchange rate for selected currencies at the site's root.
+* displays the exchange rate for selected currencies at the site's root.
 By default there is only one currency (USD) that uses CBR.ru as the source for the exchange rate.
 * at '/admin' there is an interface to manually set (force) exchange rate for the selected currency. When the forced exchange rate is set, it is displayed at the site's root instead of the actual value untill the specified time. *Note*: admin interface doesn't require any authentication (this is a sample app).
 
@@ -30,22 +30,22 @@ This app is made for educational purposes so it was only tested in a handful of 
 - [SQLite](https://www.sqlite.org/) &mdash; This is not a production ready app so for simplicity sake SQLite is used. It is easily swaped with a DB of your choice, seeds.rb file is provided.
 - [Redis](http://redis.io/) &mdash; The app is using Rails' ActionCable which relies on Redis.
 
-A complete list required Ruby Gems is at [/master/Gemfile](https://github.com/epsilonix/currency-display/blob/master/Gemfile).
+A complete list required Ruby Gems is at [/master/Gemfile](https://github.com/epsylonix/currency\_display/blob/master/Gemfile).
 
 
 ## Installation
 
-	git clone https://github.com/epsilonix/currency-display/currency-display.git ~/curr_disp
-	cd ~/curr_disp
+	git clone https://github.com/epsylonix/currency_display.git
+	cd currency_display
 	bundle install
 
 ## Database initialization
 
-	rails db:migrate db:seed
+	bin/rails db:migrate db:seed
 
 ## Running the app
 
-Note: Redis server is expected to run at port 6379. Otherwise please change the setting in /config/cable.yml.
+Note: Redis server is expected to be running at port 6379. Otherwise please change the setting in /config/cable.yml.
 
 	foreman start
 
@@ -60,6 +60,7 @@ Open a browser.
 ## Running tests
 
 Make sure PhantomJS and all gems from :test group are installed.
-
-	rails test
+	
+	bin/rails db:migrate RAILS_ENV=test
+	bin/rails test
 
